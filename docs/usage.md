@@ -12,5 +12,4 @@ obscureString('john.doe@example.com', {
   maskChar: '#',
 });
 // → 'jo##############.com'
-
 ```
