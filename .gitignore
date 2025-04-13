@@ -1,0 +1,33 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage
+coverage/
+
+# Test reports
+jest-html-reporters-*
+
+# Editor configs
+.vscode/
+.idea/
+*.swp
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Env files (if needed later)
+.env
+.env.local
+.env.*.local
+
+# Build output (optional if you ever add bundling)
+dist/
+build/
+
+# TypeScript (if you later migrate or generate types)
+*.tsbuildinfo

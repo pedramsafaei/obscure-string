@@ -1,0 +1,7 @@
+__tests__/
+src/
+.vscode/
+.prettierrc
+.gitignore
+jest.config.js
+README.draft.md

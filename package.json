@@ -1,0 +1,51 @@
+{
+  "name": "obscure-string",
+  "version": "1.0.1",
+  "description": "Mask the middle of strings with custom characters — perfect for hiding secrets, emails, or IDs.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "jest --coverage",
+    "format": "prettier --write .",
+    "prepare": "npm run format"
+  },
+  "keywords": [
+    "mask",
+    "obscure",
+    "string",
+    "censor",
+    "hide",
+    "redact",
+    "log",
+    "secret",
+    "obfuscate",
+    "logging",
+    "sanitize",
+    "privacy"
+  ],
+  "author": "Pedram Safaei <pedramcodes@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedramsafaei/obscure-string"
+  },
+  "bugs": {
+    "url": "https://github.com/pedramsafaei/obscure-string/issues"
+  },
+  "homepage": "https://github.com/pedramsafaei/obscure-string#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^4.1.0",
+    "prettier": "^3.5.3"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
