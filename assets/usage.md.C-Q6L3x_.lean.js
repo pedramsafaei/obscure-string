@@ -1,0 +1,1 @@
+import{_ as a,c as i,o as n,ae as e}from"./chunks/framework.Dh1jimFm.js";const g=JSON.parse('{"title":"Usage Examples","description":"","frontmatter":{},"headers":[],"relativePath":"usage.md","filePath":"usage.md"}'),t={name:"usage.md"};function p(l,s,h,k,r,E){return n(),i("div",null,s[0]||(s[0]=[e("",2)]))}const c=a(t,[["render",p]]);export{g as __pageData,c as default};
