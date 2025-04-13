@@ -18,6 +18,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Clean old dist (just in case)
+        run: rm -rf docs/.vitepress/dist
+
       - name: Build VitePress docs
         run: npm run docs:build
 
