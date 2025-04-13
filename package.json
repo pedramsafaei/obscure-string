@@ -1,6 +1,6 @@
 {
   "name": "obscure-string",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Mask the middle of strings with custom characters — perfect for hiding secrets, emails, or IDs.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,11 @@
   "scripts": {
     "test": "jest --coverage",
     "format": "prettier --write .",
-    "prepare": "npm run format"
+    "prepare": "npm run format",
+    "release": "standard-version"
+  },
+  "bin": {
+    "obscure-string": "bin/index.js"
   },
   "keywords": [
     "mask",
@@ -43,7 +47,8 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "jest-html-reporter": "^4.1.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "standard-version": "^9.5.0"
   },
   "engines": {
     "node": ">=14"
