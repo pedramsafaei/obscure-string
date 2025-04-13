@@ -1,6 +1,6 @@
 {
   "name": "obscure-string",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mask the middle of strings with custom characters — perfect for hiding secrets, emails, or IDs.",
   "main": "index.js",
   "types": "index.d.ts",
