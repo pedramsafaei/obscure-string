@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "test": "jest --coverage",
+    "build": "mkdir -p dist && cp src/index.js dist/index.js && cp index.d.ts dist/index.d.ts",
     "format": "prettier --write .",
     "prepare": "npm run format",
     "release": "standard-version",

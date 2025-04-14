@@ -1,11 +1,10 @@
 # 🕶️ obscure-string
 
 [![NPM Version](https://img.shields.io/npm/v/obscure-string?style=flat-square)](https://www.npmjs.com/package/obscure-string)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-username/obscure-string/ci.yml?style=flat-square)](https://github.com/your-username/obscure-string/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pedramsafaei/obscure-string/ci.yml?style=flat-square)](https://github.com/pedramsafaei/obscure-string/actions)
 [![License](https://img.shields.io/npm/l/obscure-string?style=flat-square)](./LICENSE)
 [![Types Included](https://img.shields.io/npm/types/obscure-string?style=flat-square)](./index.d.ts)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/obscure-string?style=flat-square)](https://bundlephobia.com/result?p=obscure-string)
-[![Downloads](https://img.shields.io/npm/dm/obscure-string?style=flat-square)](https://www.npmjs.com/package/obscure-string)
 
 > A tiny utility to mask part of a string — perfect for hiding secrets, emails, API keys, and IDs. Fully customizable and zero dependencies.
 
