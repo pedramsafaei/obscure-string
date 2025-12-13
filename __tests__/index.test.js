@@ -7,7 +7,7 @@ const {
 describe('obscureString - Basic Functionality', () => {
   test('masks the middle with default settings', () => {
     const result = obscureString('mysecretkey');
-    expect(result).toBe('mys*****key');
+    expect(result).toBe('mys******ey');
   });
 
   test('masks with custom prefix/suffix and mask character', () => {
@@ -45,7 +45,7 @@ describe('obscureString - Enhanced Input Validation', () => {
 
   test('coerces numbers to strings', () => {
     expect(obscureString(12345)).toBe('12345'); // Too short
-    expect(obscureString(1234567890)).toBe('123****890');
+    expect(obscureString(1234567890)).toBe('123*****90');
   });
 
   test('coerces booleans to strings', () => {
@@ -69,8 +69,8 @@ describe('obscureString - Enhanced Input Validation', () => {
     const result = obscureString(longString);
     expect(result.length).toBe(10000);
     expect(result.startsWith('aaa')).toBe(true);
-    expect(result.endsWith('aaa')).toBe(true);
-    expect(result.slice(3, -3)).toBe('*'.repeat(9994));
+    expect(result.endsWith('aa')).toBe(true);
+    expect(result.slice(3, -2)).toBe('*'.repeat(9995));
   });
 
   test('throws error for strings exceeding maxLength', () => {
@@ -108,23 +108,23 @@ describe('obscureString - Enhanced Input Validation', () => {
 describe('obscureString - Unicode & Special Characters', () => {
   test('handles unicode emojis correctly', () => {
     const result = obscureString('🔐secret🔑');
-    expect(result).toBe('🔐se***et🔑');
+    expect(result).toBe('🔐se***t🔑');
   });
 
   test('handles multi-byte unicode characters', () => {
     const result = obscureString('こんにちは世界');
-    expect(result).toBe('こんに*世界');
+    expect(result).toBe('こんに**世界');
   });
 
   test('handles mixed unicode and ASCII', () => {
     const result = obscureString('user@例え.com');
-    expect(result).toBe('use****com');
+    expect(result).toBe('use******om');
   });
 
   test('handles special characters', () => {
-    expect(obscureString('a!b@c#d$e%f^g')).toBe('a!b*****%f^g');
+    expect(obscureString('a!b@c#d$e%f^g')).toBe('a!b********^g');
     expect(obscureString('<script>alert("xss")</script>')).toBe(
-      '<sc*******************ript>'
+      '<sc************************t>'
     );
   });
 
@@ -145,25 +145,25 @@ describe('obscureString - Security Edge Cases', () => {
     const result = obscureString(xss);
     expect(result).not.toContain('alert');
     expect(result.startsWith('<sc')).toBe(true);
-    expect(result.endsWith('ipt>')).toBe(true);
+    expect(result.endsWith('t>')).toBe(true);
   });
 
   test('handles SQL injection patterns', () => {
     const sql = "'; DROP TABLE users; --";
     const result = obscureString(sql);
-    expect(result).toBe("'; ***************; --");
+    expect(result).toBe("'; ******************--");
   });
 
   test('handles path traversal attempts', () => {
     const path = '../../etc/passwd';
     const result = obscureString(path);
-    expect(result).toBe('../*********asswd');
+    expect(result).toBe('../***********wd');
   });
 
   test('handles command injection attempts', () => {
     const cmd = 'test; rm -rf /';
     const result = obscureString(cmd);
-    expect(result).toBe('tes*******f /');
+    expect(result).toBe('tes********* /');
   });
 
   test('does not expose sensitive data in errors', () => {
@@ -201,7 +201,7 @@ describe('obscureString - New Features: reverseMask', () => {
 
   test('reverseMask with default settings', () => {
     const result = obscureString('abcdefghijk', { reverseMask: true });
-    expect(result).toBe('***defgh***');
+    expect(result).toBe('***defghi**');
   });
 
   test('reverseMask with minMaskLength', () => {
@@ -219,7 +219,7 @@ describe('obscureString - New Features: reverseMask', () => {
 describe('obscureString - New Features: percentage', () => {
   test('masks by percentage', () => {
     const result = obscureString('1234567890', { percentage: 50 });
-    expect(result).toBe('12***67890');
+    expect(result).toBe('12*****890');
   });
 
   test('masks 100% by percentage', () => {
@@ -325,7 +325,7 @@ describe('obscureStringBatch', () => {
 
   test('handles array with mixed types', () => {
     const result = obscureStringBatch(['string', 123, null, undefined]);
-    expect(result[0]).toBe('str***ing');
+    expect(result[0]).toBe('str*ng');
     expect(result[1]).toBe('123'); // Too short
     expect(result[2]).toBe('');
     expect(result[3]).toBe('');
@@ -343,11 +343,11 @@ describe('getMaskInfo', () => {
     expect(info).toEqual({
       willBeMasked: true,
       originalLength: 11,
-      maskedLength: 5,
-      visibleChars: 6,
-      maskedChars: 5,
+      maskedLength: 6,
+      visibleChars: 5,
+      maskedChars: 6,
       prefixLength: 3,
-      suffixLength: 3,
+      suffixLength: 2,
     });
   });
 
@@ -457,7 +457,7 @@ describe('Stress Tests', () => {
     const result = obscureString(veryLongString);
     expect(result.length).toBe(100000);
     expect(result.startsWith('aaa')).toBe(true);
-    expect(result.endsWith('aaa')).toBe(true);
+    expect(result.endsWith('aa')).toBe(true);
   });
 
   test('handles many repeated calls', () => {

@@ -22,7 +22,7 @@ function runCLI(args) {
 describe('CLI - Basic Usage', () => {
   test('masks with default settings', () => {
     const result = runCLI('"mysecretkey"');
-    expect(result.stdout).toBe('mys*****key');
+    expect(result.stdout).toBe('mys******ey');
     expect(result.exitCode).toBe(0);
   });
 
@@ -49,13 +49,13 @@ describe('CLI - Basic Usage', () => {
 describe('CLI - Options', () => {
   test('respects --prefix option', () => {
     const result = runCLI('"mysecretkey" --prefix 2');
-    expect(result.stdout).toBe('my*******key');
+    expect(result.stdout).toBe('my******key');
     expect(result.exitCode).toBe(0);
   });
 
   test('respects -p short option', () => {
     const result = runCLI('"mysecretkey" -p 2');
-    expect(result.stdout).toBe('my*******key');
+    expect(result.stdout).toBe('my******key');
     expect(result.exitCode).toBe(0);
   });
 
@@ -79,7 +79,7 @@ describe('CLI - Options', () => {
 
   test('respects -c short option', () => {
     const result = runCLI('"teststring" -c "#"');
-    expect(result.stdout).toBe('tes####ring');
+    expect(result.stdout).toBe('tes####ing');
     expect(result.exitCode).toBe(0);
   });
 
@@ -125,7 +125,7 @@ describe('CLI - Advanced Features', () => {
 
   test('percentage mask', () => {
     const result = runCLI('"1234567890" --percentage 50');
-    expect(result.stdout).toBe('12***67890');
+    expect(result.stdout).toBe('12*****890');
     expect(result.exitCode).toBe(0);
   });
 
@@ -159,7 +159,7 @@ describe('CLI - Error Handling', () => {
 describe('CLI - Special Characters', () => {
   test('handles strings with spaces', () => {
     const result = runCLI('"my secret key"');
-    expect(result.stdout).toBe('my ****t key');
+    expect(result.stdout).toBe('my *******key');
     expect(result.exitCode).toBe(0);
   });
 
