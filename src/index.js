@@ -5,7 +5,7 @@
  * @param {Object} options - Configuration options.
  * @param {string} [options.maskChar='*'] - Character to use for masking.
  * @param {number} [options.prefixLength=3] - Number of characters to show at the beginning.
- * @param {number} [options.suffixLength=3] - Number of characters to show at the end.
+ * @param {number} [options.suffixLength=2] - Number of characters to show at the end.
  * @param {number} [options.minMaskLength=0] - Minimum number of mask characters to show (string must be long enough).
  * @param {boolean} [options.fullMask=false] - Mask the entire string.
  * @param {boolean} [options.reverseMask=false] - Show middle, hide edges.
@@ -27,7 +27,7 @@ function obscureString(str, options = {}) {
   const {
     maskChar = '*',
     prefixLength = 3,
-    suffixLength = 3,
+    suffixLength = 2,
     minMaskLength = 0,
     fullMask = false,
     reverseMask = false,
@@ -105,11 +105,13 @@ function obscureString(str, options = {}) {
 
   // Performance optimization: use string concatenation for small strings,
   // array join for larger ones (more efficient)
+  const suffix = suffixLength > 0 ? str.slice(-suffixLength) : '';
+  
   if (strLength < 100) {
     return (
       str.slice(0, prefixLength) +
       maskChar.repeat(maskLength) +
-      str.slice(-suffixLength)
+      suffix
     );
   }
 
@@ -117,7 +119,7 @@ function obscureString(str, options = {}) {
   return (
     str.slice(0, prefixLength) +
     maskChar.repeat(maskLength) +
-    str.slice(strLength - suffixLength)
+    suffix
   );
 }
 
@@ -129,7 +131,7 @@ function applyPreset(str, preset, maskChar) {
   switch (preset.toLowerCase()) {
     case 'email': {
       const atIndex = str.lastIndexOf('@');
-      if (atIndex <= 0) return obscureString(str, { maskChar });
+      if (atIndex <= 0) return obscureString(str, { maskChar, prefixLength: 3, suffixLength: 0 });
 
       const localPart = str.slice(0, atIndex);
       const domain = str.slice(atIndex);
@@ -192,7 +194,7 @@ function maskByPercentage(str, percentage, maskChar) {
   return (
     str.slice(0, prefixLen) +
     maskChar.repeat(charsToMask) +
-    str.slice(-suffixLen)
+    (suffixLen > 0 ? str.slice(-suffixLen) : '')
   );
 }
 
@@ -252,7 +254,7 @@ function getMaskInfo(str, options = {}) {
 
   const {
     prefixLength = 3,
-    suffixLength = 3,
+    suffixLength = 2,
     fullMask = false,
     minMaskLength = 0,
   } = options;
