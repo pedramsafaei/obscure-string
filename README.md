@@ -547,12 +547,72 @@ Uses [Prettier](https://prettier.io) with `.prettierrc` config.
 
 ---
 
-## 🖥️ CLI (Coming Soon)
+## 🖥️ CLI Usage
 
-A CLI version is planned:
+The package includes a command-line interface for quick masking:
+
+### Installation
 
 ```bash
-npx obscure-string "my-secret-token" --prefix 2 --suffix 4 --char "#"
+npm install -g obscure-string
+# or use npx
+npx obscure-string <string> [options]
+```
+
+### Basic Usage
+
+```bash
+# Basic masking
+obscure-string "mysecretkey"
+# → mys*****key
+
+# Custom prefix/suffix and mask character
+obscure-string "my-secret-token" --prefix 2 --suffix 4 --char "#"
+# → my##########oken
+
+# Email preset
+obscure-string "john.doe@example.com" --preset email
+# → jo******@example.com
+
+# Credit card preset
+obscure-string "4111111111111111" --preset creditCard
+# → ************1111
+
+# Full masking
+obscure-string "sensitive" --full
+# → *********
+
+# Percentage-based
+obscure-string "1234567890" --percentage 50
+# → 12***67890
+```
+
+### CLI Options
+
+| Option | Alias | Description | Example |
+|--------|-------|-------------|---------|
+| `--prefix <num>` | `-p` | Visible chars at start | `-p 2` |
+| `--suffix <num>` | `-s` | Visible chars at end | `-s 4` |
+| `--char <char>` | `-c` | Mask character | `-c "#"` |
+| `--preset <type>` | | Use preset (email, creditCard, phone) | `--preset email` |
+| `--full` | | Mask entire string | `--full` |
+| `--reverse` | | Show middle, hide edges | `--reverse` |
+| `--percentage <num>` | | Mask percentage (0-100) | `--percentage 50` |
+| `--min-mask <num>` | | Min masked chars required | `--min-mask 5` |
+| `--max-length <num>` | | Max string length (DoS protection) | `--max-length 10000` |
+| `--help` | `-h` | Show help message | `-h` |
+
+### Examples
+
+```bash
+# Hide API keys in logs
+echo "API_KEY=sk_live_1234567890" | obscure-string "sk_live_1234567890" -p 7 -s 4
+
+# Mask email addresses
+obscure-string "support@company.com" --preset email
+
+# Process multiple values (using xargs)
+cat secrets.txt | xargs -I {} obscure-string {}
 ```
 
 ---
