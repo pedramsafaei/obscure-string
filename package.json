@@ -1,7 +1,7 @@
 {
   "name": "obscure-string",
-  "version": "1.0.7",
-  "description": "Mask the middle of strings with custom characters — perfect for hiding secrets, emails, or IDs.",
+  "version": "2.0.0",
+  "description": "High-performance, security-focused utility to mask strings - perfect for hiding secrets, emails, API keys, credit cards, and sensitive data.",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
