@@ -219,7 +219,7 @@ describe('obscureString - New Features: reverseMask', () => {
 describe('obscureString - New Features: percentage', () => {
   test('masks by percentage', () => {
     const result = obscureString('1234567890', { percentage: 50 });
-    expect(result).toBe('12***67890');
+    expect(result).toBe('12*****890');
   });
 
   test('masks 100% by percentage', () => {
