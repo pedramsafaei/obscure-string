@@ -5,7 +5,7 @@
  * @param {Object} options - Configuration options.
  * @param {string} [options.maskChar='*'] - Character to use for masking.
  * @param {number} [options.prefixLength=3] - Number of characters to show at the beginning.
- * @param {number} [options.suffixLength=2] - Number of characters to show at the end.
+ * @param {number} [options.suffixLength=3] - Number of characters to show at the end.
  * @param {number} [options.minMaskLength=0] - Minimum number of mask characters to show (string must be long enough).
  * @param {boolean} [options.fullMask=false] - Mask the entire string.
  * @param {boolean} [options.reverseMask=false] - Show middle, hide edges.
@@ -27,7 +27,7 @@ function obscureString(str, options = {}) {
   const {
     maskChar = '*',
     prefixLength = 3,
-    suffixLength = 2,
+    suffixLength = 3,
     minMaskLength = 0,
     fullMask = false,
     reverseMask = false,
@@ -254,7 +254,7 @@ function getMaskInfo(str, options = {}) {
 
   const {
     prefixLength = 3,
-    suffixLength = 2,
+    suffixLength = 3,
     fullMask = false,
     minMaskLength = 0,
   } = options;
