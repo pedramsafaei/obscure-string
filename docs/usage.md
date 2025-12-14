@@ -4,7 +4,7 @@
 import { obscureString } from 'obscure-string';
 
 obscureString('mysecretkey');
-// → 'mys*****key'
+// → 'mys******ey'
 
 obscureString('john.doe@example.com', {
   prefixLength: 2,

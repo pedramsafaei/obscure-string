@@ -3,7 +3,7 @@ export interface ObscureStringOptions {
   maskChar?: string;
   /** Number of characters to show at the beginning (default: 3) */
   prefixLength?: number;
-  /** Number of characters to show at the end (default: 3) */
+  /** Number of characters to show at the end (default: 2) */
   suffixLength?: number;
   /** Minimum number of mask characters required (default: 0) */
   minMaskLength?: number;

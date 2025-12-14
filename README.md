@@ -44,7 +44,7 @@ const { obscureString } = require('obscure-string');
 
 // Basic usage
 obscureString('mysecretkey');
-// → 'mys*****key'
+// → 'mys******ey'
 
 // Custom configuration
 obscureString('john.doe@example.com', {
@@ -132,7 +132,7 @@ Main function to obscure a string.
 |--------|------|---------|-------------|
 | `maskChar` | `string` | `'*'` | Character(s) to use for masking |
 | `prefixLength` | `number` | `3` | Visible characters at the beginning |
-| `suffixLength` | `number` | `3` | Visible characters at the end |
+| `suffixLength` | `number` | `2` | Visible characters at the end |
 | `minMaskLength` | `number` | `0` | Minimum masked characters required |
 | `fullMask` | `boolean` | `false` | Mask the entire string |
 | `reverseMask` | `boolean` | `false` | Show middle, hide edges |
@@ -149,7 +149,7 @@ Main function to obscure a string.
 ```js
 // Standard masking
 obscureString('mysecretkey');
-// → 'mys*****key'
+// → 'mys******ey'
 
 // Custom mask character
 obscureString('secret', { maskChar: '█' });
@@ -243,11 +243,11 @@ getMaskInfo('mysecretkey');
 // → {
 //   willBeMasked: true,
 //   originalLength: 11,
-//   maskedLength: 5,
-//   visibleChars: 6,
-//   maskedChars: 5,
+//   maskedLength: 6,
+//   visibleChars: 5,
+//   maskedChars: 6,
 //   prefixLength: 3,
-//   suffixLength: 3
+//   suffixLength: 2
 // }
 
 getMaskInfo('short');
@@ -564,7 +564,7 @@ npx obscure-string <string> [options]
 ```bash
 # Basic masking
 obscure-string "mysecretkey"
-# → mys*****key
+# → mys******ey
 
 # Custom prefix/suffix and mask character
 obscure-string "my-secret-token" --prefix 2 --suffix 4 --char "#"

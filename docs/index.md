@@ -7,5 +7,5 @@ A tiny utility for masking the middle of strings. Perfect for redacting secrets,
 ```js
 import { obscureString } from 'obscure-string';
 
-obscureString('mysecretkey'); // → 'mys*****key'
+obscureString('mysecretkey'); // → 'mys******ey'
 ```
