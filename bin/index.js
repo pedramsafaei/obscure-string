@@ -58,9 +58,9 @@ if (args[0] && !args[0].startsWith('-')) {
 }
 
 // Parse options
-// Set CLI-specific defaults (different from library defaults)
+// Set CLI-specific defaults (same as library defaults)
 const options = {
-  suffixLength: 3, // CLI default is 3, library default is 2
+  suffixLength: 3, // CLI default is 3, library default is 3
 };
 
 while (i < args.length) {
