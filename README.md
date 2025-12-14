@@ -132,7 +132,7 @@ Main function to obscure a string.
 |--------|------|---------|-------------|
 | `maskChar` | `string` | `'*'` | Character(s) to use for masking |
 | `prefixLength` | `number` | `3` | Visible characters at the beginning |
-| `suffixLength` | `number` | `2` | Visible characters at the end |
+| `suffixLength` | `number` | `3` | Visible characters at the end |
 | `minMaskLength` | `number` | `0` | Minimum masked characters required |
 | `fullMask` | `boolean` | `false` | Mask the entire string |
 | `reverseMask` | `boolean` | `false` | Show middle, hide edges |
@@ -243,11 +243,11 @@ getMaskInfo('mysecretkey');
 // → {
 //   willBeMasked: true,
 //   originalLength: 11,
-//   maskedLength: 6,
-//   visibleChars: 5,
-//   maskedChars: 6,
+//   maskedLength: 5,
+//   visibleChars: 6,
+//   maskedChars: 5,
 //   prefixLength: 3,
-//   suffixLength: 2
+//   suffixLength: 3
 // }
 
 getMaskInfo('short');
