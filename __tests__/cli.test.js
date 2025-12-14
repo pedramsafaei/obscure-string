@@ -22,7 +22,7 @@ function runCLI(args) {
 describe('CLI - Basic Usage', () => {
   test('masks with default settings', () => {
     const result = runCLI('"mysecretkey"');
-    expect(result.stdout).toBe('mys******ey');
+    expect(result.stdout).toBe('mys*****key');
     expect(result.exitCode).toBe(0);
   });
 
