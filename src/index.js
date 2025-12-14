@@ -69,7 +69,8 @@ function obscureString(str, options = {}) {
 
   // Handle full mask
   if (fullMask) {
-    return maskChar.repeat(str.length);
+    // Use spread operator to properly count Unicode characters (including emojis)
+    return maskChar.repeat([...str].length);
   }
 
   // Handle percentage-based masking

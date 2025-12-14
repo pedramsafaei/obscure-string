@@ -69,8 +69,8 @@ describe('obscureString - Enhanced Input Validation', () => {
     const result = obscureString(longString);
     expect(result.length).toBe(10000);
     expect(result.startsWith('aaa')).toBe(true);
-    expect(result.endsWith('aa')).toBe(true);
-    expect(result.slice(3, -2)).toBe('*'.repeat(9995));
+    expect(result.endsWith('aaa')).toBe(true);
+    expect(result.slice(3, -3)).toBe('*'.repeat(9994));
   });
 
   test('throws error for strings exceeding maxLength', () => {
@@ -118,7 +118,7 @@ describe('obscureString - Unicode & Special Characters', () => {
 
   test('handles mixed unicode and ASCII', () => {
     const result = obscureString('user@例え.com');
-    expect(result).toBe('use*******com');
+    expect(result).toBe('use*****com');
   });
 
   test('handles special characters', () => {
@@ -145,13 +145,13 @@ describe('obscureString - Security Edge Cases', () => {
     const result = obscureString(xss);
     expect(result).not.toContain('alert');
     expect(result.startsWith('<sc')).toBe(true);
-    expect(result.endsWith('t>')).toBe(true);
+    expect(result.endsWith('pt>')).toBe(true);
   });
 
   test('handles SQL injection patterns', () => {
-    const sql = "'; DROP TABLE users; --";
+    const sql = "';  DROP TABLE users;  --";
     const result = obscureString(sql);
-    expect(result).toBe("'; *****************; --");
+    expect(result).toBe("'; ******************* --");
   });
 
   test('handles path traversal attempts', () => {
@@ -325,7 +325,7 @@ describe('obscureStringBatch', () => {
 
   test('handles array with mixed types', () => {
     const result = obscureStringBatch(['string', 123, null, undefined]);
-    expect(result[0]).toBe('string'); // Too short with new default suffix=3
+    expect(result[0]).toBe('string'); // With suffix=3, 'string' is too short to mask
     expect(result[1]).toBe('123'); // Too short
     expect(result[2]).toBe('');
     expect(result[3]).toBe('');
@@ -457,7 +457,7 @@ describe('Stress Tests', () => {
     const result = obscureString(veryLongString);
     expect(result.length).toBe(100000);
     expect(result.startsWith('aaa')).toBe(true);
-    expect(result.endsWith('aa')).toBe(true);
+    expect(result.endsWith('aaa')).toBe(true);
   });
 
   test('handles many repeated calls', () => {
